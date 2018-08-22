@@ -17,11 +17,12 @@ export const fetchVisitsError = error => ({
     error
 });
 
-export const fetchVisits = () => dispatch => {
+export const fetchVisits = (input) => dispatch => {
     console.log(`API KEY: ${REACT_APP_KEY}`);
+    console.log(`User Input: ${input}`);
     dispatch(fetchVisitsRequest());
 
-    fetch(`https://cors-anywhere.herokuapp.com/https://api.webfinery.com/ranks?domain=amazon.com&key=${REACT_APP_KEY}`, {
+    fetch(`https://cors-anywhere.herokuapp.com/https://api.webfinery.com/ranks?domain=${input}&key=${REACT_APP_KEY}`, {
         method: 'GET',
         dataType: 'JSON',
         mode: 'cors',

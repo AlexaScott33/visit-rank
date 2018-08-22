@@ -5,8 +5,20 @@ import { fetchVisits } from '../actions/visits';
 import './Form.css';
 
 class Form extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            input: ''
+        }
+    }
+
+    handleChange(e) {
+        this.setState({
+            input: e.target.value
+        });
+    }
     render() {
-        console.log(this.props);
+        console.log(this.props.visits);
         console.log(this.state);
         return(
             <div className="form-container">
@@ -15,16 +27,25 @@ class Form extends Component {
                     <input 
                         type="text" 
                         name="searchInput" 
-                        placeholder="e.g. amazon.com">
+                        placeholder="e.g. amazon.com"
+                        onChange={(e) => {
+                            this.handleChange(e);
+                        }}>
                     </input>
                     <button 
                         type="submit" 
                         onClick={(e) => {
-                            e.preventDefault()
-                            console.log('clicking')
-                            this.props.dispatch(fetchVisits());
+                            e.preventDefault(); 
+                            if (this.state.input === '') {
+                                alert('Please enter in valid domain');
+                            }
+                            this.props.dispatch(fetchVisits(this.state.input));
                             }}>Submit</button>
                 </form>
+                <ul>
+                    <li>{this.props.visits.domain}</li>
+                    <li>{this.props.visits.rank}</li>
+                </ul>
             </div>
         );
     }
