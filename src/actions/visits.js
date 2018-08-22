@@ -21,7 +21,7 @@ export const fetchVisits = () => dispatch => {
     console.log(`API KEY: ${REACT_APP_KEY}`);
     dispatch(fetchVisitsRequest());
 
-    fetch(`https://api.webfinery.com/ranks?domain=amazon.com&key=${REACT_APP_KEY}`, {
+    fetch(`https://cors-anywhere.herokuapp.com/https://api.webfinery.com/ranks?domain=amazon.com&key=${REACT_APP_KEY}`, {
         method: 'GET',
         dataType: 'JSON',
         mode: 'cors',
