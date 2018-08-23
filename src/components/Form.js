@@ -18,10 +18,11 @@ class Form extends Component {
         });
     }
     render() {
-        console.log(this.props.visits);
-        console.log(this.state);
-        return(
-            <div className="form-container">
+        console.log(this.props);
+        // console.log(this.state);
+        if (this.props.loading === true) {
+            return(
+                <div className="form-container">
                 <form>
                     <label htmlFor="searchInput">Search</label>
                     <input 
@@ -38,8 +39,40 @@ class Form extends Component {
                             e.preventDefault(); 
                             if (this.state.input === '') {
                                 alert('Please enter in valid domain');
+                            } else {
+                                this.props.dispatch(fetchVisits(this.state.input));
                             }
-                            this.props.dispatch(fetchVisits(this.state.input));
+                            }}>Submit</button>
+                </form>
+                <div>
+                    Loading....
+                </div>
+            </div>
+            );
+        }
+        return(
+            <div className="form-container">
+                <form>
+                    <label className="search-label" htmlFor="searchInput">Search</label>
+                    <input 
+                        className="search-input"
+                        type="text" 
+                        name="searchInput" 
+                        placeholder="e.g. amazon.com"
+                        onChange={(e) => {
+                            this.handleChange(e);
+                        }}>
+                    </input>
+                    <button 
+                        className="search-button"
+                        type="submit" 
+                        onClick={(e) => {
+                            e.preventDefault(); 
+                            if (this.state.input === '') {
+                                alert('Please enter in valid domain');
+                            } else {
+                                this.props.dispatch(fetchVisits(this.state.input));
+                            }
                             }}>Submit</button>
                 </form>
                 <ul>
@@ -52,7 +85,9 @@ class Form extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    visits: state.visits
+    visits: state.visits,
+    loading: state.loading,
+    error: state.error
 });
 
 export default connect (mapStateToProps)(Form);
