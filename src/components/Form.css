@@ -26,8 +26,12 @@ button:hover {
     transform: translate(0px, -10px) scale(1);
   }
 
+  .loading-message {
+      color: #a696c8;
+  }
 
 li {
     list-style: none;
+    color: #a696c8;
 }
 

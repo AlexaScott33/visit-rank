@@ -33,18 +33,8 @@ class Form extends Component {
                             this.handleChange(e);
                         }}>
                     </input>
-                    <button 
-                        type="submit" 
-                        onClick={(e) => {
-                            e.preventDefault(); 
-                            if (this.state.input === '') {
-                                alert('Please enter in valid domain');
-                            } else {
-                                this.props.dispatch(fetchVisits(this.state.input));
-                            }
-                            }}>Submit</button>
                 </form>
-                <div>
+                <div className="loading-message">
                     Loading....
                 </div>
             </div>
