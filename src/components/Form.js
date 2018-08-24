@@ -8,7 +8,8 @@ class Form extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            input: ''
+            input: '',
+            display: 'search'
         }
     }
 
@@ -17,60 +18,74 @@ class Form extends Component {
             input: e.target.value
         });
     }
+
+    handleClick() {
+        this.setState({
+            display: 'results'
+        });
+    }
+
+    handleClick2() {
+        this.setState({
+            display: 'search'
+        });
+    }
     render() {
-        console.log(this.props);
-        // console.log(this.state);
+        // console.log(this.props);
+        console.log(this.state);
+        if (this.state.display === 'search') {
+            return(
+                <div className="form-container">
+                    <form>
+                        <label className="search-label" htmlFor="searchInput">Search</label>
+                        <input 
+                            className="search-input"
+                            type="text" 
+                            name="searchInput" 
+                            placeholder="e.g. amazon.com"
+                            onChange={(e) => this.handleChange(e)}>
+                        </input>
+                        <button 
+                            className="search-button"
+                            type="submit" 
+                            onClick={(e) => {
+                                e.preventDefault(); 
+                                this.handleClick();
+                                if (this.state.input === '') {
+                                    alert('Please enter in valid domain');
+                                } else {
+                                    this.props.dispatch(fetchVisits(this.state.input));
+                                }
+                                }}>Submit</button>
+                    </form>
+                </div>
+            );
+        }
         if (this.props.loading === true) {
             return(
                 <div className="form-container">
-                <form>
-                    <label htmlFor="searchInput">Search</label>
-                    <input 
-                        type="text" 
-                        name="searchInput" 
-                        placeholder="e.g. amazon.com"
-                        onChange={(e) => {
-                            this.handleChange(e);
-                        }}>
-                    </input>
-                </form>
                 <div className="loading-message">
                     Loading....
                 </div>
             </div>
             );
         }
-        return(
-            <div className="form-container">
-                <form>
-                    <label className="search-label" htmlFor="searchInput">Search</label>
-                    <input 
-                        className="search-input"
-                        type="text" 
-                        name="searchInput" 
-                        placeholder="e.g. amazon.com"
-                        onChange={(e) => {
-                            this.handleChange(e);
-                        }}>
-                    </input>
-                    <button 
-                        className="search-button"
-                        type="submit" 
-                        onClick={(e) => {
-                            e.preventDefault(); 
-                            if (this.state.input === '') {
-                                alert('Please enter in valid domain');
-                            } else {
-                                this.props.dispatch(fetchVisits(this.state.input));
-                            }
-                            }}>Submit</button>
-                </form>
-                <ul>
-                    <li>{this.props.visits.domain}</li>
-                    <li>{this.props.visits.rank}</li>
-                </ul>
-            </div>
-        );
+        if (this.state.display === 'results') {
+            return(
+                <div>
+                    <button
+                    className="search-button"
+                    type="submit" 
+                    onClick={() => this.handleClick2()}
+                    >Search again
+                    </button>
+                    <ul>
+                        <li>{this.props.visits.domain}</li>
+                        <li>{this.props.visits.rank}</li>
+                    </ul>
+                </div>
+            );
+        }
     }
 }
 
