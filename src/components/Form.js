@@ -50,10 +50,12 @@ class Form extends Component {
                             type="submit" 
                             onClick={(e) => {
                                 e.preventDefault(); 
-                                if (this.state.input === '' || !this.state.input.includes('.com')) {
+                                if (this.state.input === '' || !this.state.input.toLowerCase().includes('.com')) {
                                     alert('Please enter in valid domain');
                                 } else {
-                                    this.props.dispatch(fetchVisits(this.state.input));
+                                    const userInput = this.state.input;
+                                    const lowerCaseInput = userInput.toLowerCase();
+                                    this.props.dispatch(fetchVisits(lowerCaseInput));
                                     this.handleClick();
                                 }
                                 }}>Submit</button>
