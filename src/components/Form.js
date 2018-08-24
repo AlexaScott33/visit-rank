@@ -50,11 +50,11 @@ class Form extends Component {
                             type="submit" 
                             onClick={(e) => {
                                 e.preventDefault(); 
-                                this.handleClick();
-                                if (this.state.input === '') {
+                                if (this.state.input === '' || !this.state.input.includes('.com')) {
                                     alert('Please enter in valid domain');
                                 } else {
                                     this.props.dispatch(fetchVisits(this.state.input));
+                                    this.handleClick();
                                 }
                                 }}>Submit</button>
                     </form>
@@ -79,7 +79,7 @@ class Form extends Component {
                     onClick={() => this.handleClick2()}
                     >Search again
                     </button>
-                    <ul>
+                    <ul className="results-list">
                         <li>{this.props.visits.domain}</li>
                         <li>{this.props.visits.rank}</li>
                     </ul>
