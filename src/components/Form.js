@@ -51,7 +51,7 @@ class Form extends Component {
                             onClick={(e) => {
                                 e.preventDefault(); 
                                 if (this.state.input === '' || !this.state.input.toLowerCase().includes('.com')) {
-                                    alert('Please enter in valid domain');
+                                    alert('Please enter in valid domain address. e.g amazon.com ');
                                 } else {
                                     const userInput = this.state.input;
                                     const lowerCaseInput = userInput.toLowerCase();
@@ -76,7 +76,7 @@ class Form extends Component {
             return(
                 <div>
                     <button
-                    className="search-button"
+                    className="switch-button"
                     type="submit" 
                     onClick={() => this.handleClick2()}
                     >Search again
