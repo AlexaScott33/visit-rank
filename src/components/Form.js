@@ -34,6 +34,11 @@ class Form extends Component {
     handleSavedClick(domain, rank) {
         console.log(domain);
         console.log(rank);
+        for(let i = 0; i < this.props.saved.length; i++) {
+            if (this.props.saved[i].domain === domain) {
+                console.log('site already exists in saved array');
+            }
+        } 
         this.props.dispatch(savedSuccess(domain, rank));
     }
     render() {
