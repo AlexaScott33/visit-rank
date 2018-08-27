@@ -43,3 +43,10 @@ export const fetchVisits = (input) => dispatch => {
         dispatch(fetchVisitsError(error));
     });
 }
+
+export const SAVED_SUCCESS = 'SAVED_SUCCESS';
+export const savedSuccess = (name, rank) => ({
+    type: SAVED_SUCCESS,
+    name,
+    rank
+});
