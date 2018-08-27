@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchVisits } from '../actions/visits';
+import { fetchVisits, savedSuccess } from '../actions/visits';
 
 import './Form.css';
 
@@ -30,9 +30,15 @@ class Form extends Component {
             display: 'search'
         });
     }
+
+    handleSavedClick(domain, rank) {
+        console.log(domain);
+        console.log(rank);
+        this.props.dispatch(savedSuccess(domain, rank));
+    }
     render() {
-        // console.log(this.props);
-        console.log(this.state);
+        console.log(this.props);
+        // console.log(this.state);
         if (this.state.display === 'search') {
             return(
                 <div className="form-container">
@@ -81,10 +87,14 @@ class Form extends Component {
                     onClick={() => this.handleClick2()}
                     >Search again
                     </button>
-                    <ul className="results-list">
-                        <li>{this.props.visits.domain}</li>
-                        <li>{this.props.visits.rank}</li>
-                    </ul>
+                    <div className="results-list">
+                        <p className="results-p">{this.props.visits.domain}</p>
+                        <p className="results-p">{this.props.visits.rank}</p>
+                        <button 
+                        type="submit"
+                        onClick={() => this.handleSavedClick(this.props.visits.domain, this.props.visits.rank)}
+                        >Save</button>
+                    </div>
                 </div>
             );
         }
@@ -93,6 +103,7 @@ class Form extends Component {
 
 const mapStateToProps = (state) => ({
     visits: state.visits,
+    saved: state.saved,
     loading: state.loading,
     error: state.error
 });
