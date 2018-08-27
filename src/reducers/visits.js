@@ -1,10 +1,12 @@
 import { FETCH_VISITS_REQUEST,
          FETCH_VISITS_SUCCESS,
-         FETCH_VISITS_ERROR 
+         FETCH_VISITS_ERROR,
+         SAVED_SUCCESS
         } from '../actions/visits';
 
         const initialState = {
             visits: [],
+            saved: [],
             loading: false,
             error: false
         }
@@ -26,6 +28,16 @@ import { FETCH_VISITS_REQUEST,
                 return Object.assign({}, state, {
                     loading: false,
                     error: action.error
+                });
+            }
+            else if (action.type === SAVED_SUCCESS) {
+                return Object.assign({}, state, {
+                    saved: [...state.saved,
+                        {
+                        domain: action.name,
+                        rank: action.rank
+                        }
+                    ]
                 });
             }
             return state;
