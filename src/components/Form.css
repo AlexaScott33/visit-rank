@@ -41,10 +41,18 @@ button:hover {
       color: #a696c8;
   }
 
+  .results-list {
+      padding: 0 0; 
+  }
+
 
 li {
     list-style: none;
-    color: #a696c8;
+    color: #f2f2f2;
+            /* width: 25%; */
+    background-color: #a696c8;
+    /* display: inline-block; */
+    padding: 20px 20px;
     text-align: center;
 }
 
