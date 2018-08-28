@@ -104,6 +104,7 @@ class Form extends Component {
                         <p className="results-p">{this.props.visits.domain}</p>
                         <p className="results-p">{this.props.visits.rank}</p>
                         <button 
+                        className="save-button"
                         type="submit"
                         onClick={() => this.handleSavedClick(this.props.visits.domain, this.props.visits.rank)}
                         >Save</button>
