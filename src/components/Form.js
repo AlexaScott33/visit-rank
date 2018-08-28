@@ -34,12 +34,20 @@ class Form extends Component {
     handleSavedClick(domain, rank) {
         console.log(domain);
         console.log(rank);
-        for(let i = 0; i < this.props.saved.length; i++) {
-            if (this.props.saved[i].domain === domain) {
-                console.log('site already exists in saved array');
+        if (this.props.saved.length === 0) {
+            console.log('empty array need to dispatch action');
+            this.props.dispatch(savedSuccess(domain, rank));
+        } else if (this.props.saved.length > 0) {
+            console.log('saved array is not empty so check for duplicates');
+            for(let i = 0; i < this.props.saved.length; i++) {
+                if (this.props.saved[i].domain === domain) {
+                    console.log('site already exists in saved array, leaving without dispatching');
+                    return;
+                }
             }
-        } 
-        this.props.dispatch(savedSuccess(domain, rank));
+            console.log('checked for duplicates NONE, now dispatch action');
+            this.props.dispatch(savedSuccess(domain, rank)); 
+        }
     }
     render() {
         console.log(this.props);
