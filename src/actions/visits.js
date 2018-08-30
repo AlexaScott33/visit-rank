@@ -50,3 +50,9 @@ export const savedSuccess = (name, rank) => ({
     name,
     rank
 });
+
+export const TOGGLE_SAVED = 'TOGGLE_SAVED';
+export const toggleSaved = (boolean) => ({
+    type: TOGGLE_SAVED,
+    boolean
+});
