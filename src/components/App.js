@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ToggledSaved from './ToggleSaved';
 import Form from './Form';
+import SavedList from './SavedList';
 import { toggleSaved } from '../actions/visits';
 
 import './App.css';
 
 class App extends Component {
   render() {
-    console.log('APP PROPS', this.props);
+    // console.log('APP PROPS', this.props);
     if (this.props.toggled === false) {
-      console.log('FALSE');
       return (
         <div>
           <header className="header-container">
@@ -24,7 +24,6 @@ class App extends Component {
       );
     }
     if (this.props.toggled === true) {
-      console.log('TRUE');
       return(
         <div>
         <header className="header-container">
@@ -33,6 +32,7 @@ class App extends Component {
         <main>
           <button
           onClick={() => this.props.dispatch(toggleSaved())}>Back</button>
+          <SavedList />
         </main>
         Help
       </div>
