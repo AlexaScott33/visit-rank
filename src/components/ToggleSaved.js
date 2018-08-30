@@ -4,9 +4,7 @@ import { toggleSaved } from '../actions/visits';
 
 class ToggleSaved extends Component {
     handleToggle() {
-        console.log('toggling!');
         this.props.dispatch(toggleSaved());
-        console.log('LOOK HERE', this.props);
     }
     render() {
         return(
