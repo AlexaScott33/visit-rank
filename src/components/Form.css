@@ -76,5 +76,6 @@ input[type=text] {
 .save-button {
     display: block;
     margin: 0 auto;
+    color: #2470a0;
 }
 
