@@ -50,7 +50,7 @@ class Form extends Component {
         }
     }
     render() {
-        console.log(this.props);
+        //console.log(this.props);
         // console.log(this.state);
         if (this.state.display === 'search') {
             return(
@@ -122,4 +122,4 @@ const mapStateToProps = (state) => ({
     error: state.error
 });
 
-export default connect (mapStateToProps)(Form);
+export default connect(mapStateToProps)(Form);
