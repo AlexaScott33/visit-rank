@@ -18,8 +18,8 @@ export const fetchVisitsError = error => ({
 });
 
 export const fetchVisits = (input) => dispatch => {
-    console.log(`API KEY: ${REACT_APP_KEY}`);
-    console.log(`User Input: ${input}`);
+    // console.log(`API KEY: ${REACT_APP_KEY}`);
+    // console.log(`User Input: ${input}`);
     dispatch(fetchVisitsRequest());
 
     fetch(`https://cors-anywhere.herokuapp.com/https://api.webfinery.com/ranks?domain=${input}&key=${REACT_APP_KEY}`, {
@@ -35,7 +35,6 @@ export const fetchVisits = (input) => dispatch => {
     })
     .then((res) => res.json())
     .then((data) => {
-        console.log(data);
         dispatch(fetchVisitsSuccess(data))
     })
     .catch((error) => {

@@ -32,8 +32,8 @@ class Form extends Component {
     }
 
     handleSavedClick(domain, rank) {
-        console.log(domain);
-        console.log(rank);
+        // console.log(domain);
+        // console.log(rank);
         if (this.props.saved.length === 0) {
             console.log('empty array need to dispatch action');
             this.props.dispatch(savedSuccess(domain, rank));

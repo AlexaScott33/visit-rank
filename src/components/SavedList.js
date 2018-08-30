@@ -6,7 +6,6 @@ import './SavedList.css';
 class SavedList extends Component {
 
     render() {
-        console.log(this.props.saved);
         if (this.props.saved.length === 0) {
             return(
                 <div>
@@ -21,7 +20,7 @@ class SavedList extends Component {
                     Rank:{site.rank}
                 </li>
             ));
-            console.log(renderSavedList);
+            // console.log(renderSavedList);
             return(
                 <div>
                     <ul>
