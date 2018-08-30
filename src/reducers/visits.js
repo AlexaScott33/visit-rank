@@ -1,12 +1,14 @@
 import { FETCH_VISITS_REQUEST,
          FETCH_VISITS_SUCCESS,
          FETCH_VISITS_ERROR,
-         SAVED_SUCCESS
+         SAVED_SUCCESS,
+         TOGGLE_SAVED
         } from '../actions/visits';
 
         const initialState = {
             visits: [],
             saved: [],
+            toggled: false,
             loading: false,
             error: false
         }
@@ -39,6 +41,12 @@ import { FETCH_VISITS_REQUEST,
                         }
                     ]
                 });
+            }
+            else if (action.type === TOGGLE_SAVED) {
+                return Object.assign({}, state, {
+                    toggled: !state.toggled
+                });
+
             }
             return state;
         }
